@@ -3,9 +3,13 @@ import Tracklist from "../Tracklist/Tracklist";
 import "./Playlist.css";
 
 export default function Playlist(props) {
+  const savePlaylistButton = () => {
+    return <button className="addPlaylist">Add Playlist</button>;
+  };
+
   return (
     <div className="container">
-      <h4>Your Playlist</h4>
+      <h4>Create Your Playlist</h4>
       <div className="playlistName">
         <input
           type="text"
@@ -14,6 +18,7 @@ export default function Playlist(props) {
           onClick={props.onClick}
           placeholder="Enter a playlist name"
         />
+        {props.value ? savePlaylistButton() : null}
       </div>
       <Tracklist
         tracks={props.tracks}

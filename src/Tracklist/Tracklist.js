@@ -11,9 +11,10 @@ export default function Tracklist(props) {
           key={index}
           track={track}
           isLast={index === props.tracks.length - 1}
+          isFirst={index === 0}
           onAddToPlaylist={props.onAddToPlaylist}
           onRemoveFromPlaylist={props.onRemoveFromPlaylist}
-          isInPlaylist={props.playlistTracks.some(t => t.name === track.name)}
+          isInPlaylist={props.playlistTracks.some((t) => t.id === track.id)}
         />
       ))}
     </div>
