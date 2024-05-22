@@ -1,0 +1,48 @@
+html {
+  background-color: #d3d3d3;
+}
+
+.App {
+  height: 100dvh;
+  margin: 0px;
+  color: white;
+}
+
+p,
+h1,
+h4 {
+  margin-block: 0px;
+}
+
+header {
+  background-color: #8800ff;
+  display: flex;
+  justify-content: center;
+  padding: 1rem;
+}
+
+.search {
+  background-color: #6101b6;
+  display: flex;
+  justify-content: center;
+  padding: 1rem;
+}
+
+.main-container {
+  display: flex;
+  justify-content: space-evenly;
+  margin: 2.5rem;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  background-color: #11084c;
+  padding: 2rem;
+  width: 30%;
+  border-radius: 5px;
+  flex: 1;
+  max-width: 40%;
+  margin-bottom: 80px;
+}
