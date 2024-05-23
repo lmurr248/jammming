@@ -120,7 +120,11 @@ function App() {
             <p>
               <span style={{ fontWeight: 700 }}>
                 Created by{" "}
-                <a href="https://github.com/lmurr248" target="_blank">
+                <a
+                  href="https://github.com/lmurr248"
+                  target="_blank"
+                  rel="noreferrer"
+                >
                   Laurence Murrin&nbsp;
                 </a>
                 -

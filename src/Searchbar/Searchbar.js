@@ -16,15 +16,6 @@ export default function SearchBar(props) {
     [props.onSearch, term]
   );
 
-  const handleKeyPress = useCallback(
-    (event) => {
-      if (event.key === "Enter") {
-        search();
-      }
-    },
-    [search]
-  );
-
   return (
     <div className="searchContainer">
       <form className="search" onSubmit={search}>
