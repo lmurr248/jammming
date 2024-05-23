@@ -8,22 +8,37 @@ export default function SearchBar(props) {
     setTerm(event.target.value);
   }, []);
 
-  const search = useCallback(() => {
-    props.onSearch(term);
-  }, [props.onSearch, term]);
+  const search = useCallback(
+    (event) => {
+      event.preventDefault();
+      props.onSearch(term);
+    },
+    [props.onSearch, term]
+  );
+
+  const handleKeyPress = useCallback(
+    (event) => {
+      if (event.key === "Enter") {
+        search();
+      }
+    },
+    [search]
+  );
 
   return (
     <div className="searchContainer">
-      <div className="search">
+      <form className="search" onSubmit={search}>
         <h4>Search for songs:</h4>
-        <input className="searchInput"
+        <input
+          className="searchInput"
           placeholder="Enter a song or artist..."
+          value={term}
           onChange={handleTermChange}
         />
-        <button className="searchButton" onClick={search}>
+        <button type="submit" className="searchButton">
           Search
         </button>
-      </div>
+      </form>
     </div>
   );
 }
