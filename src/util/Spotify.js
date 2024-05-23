@@ -1,5 +1,5 @@
 const clientId = "f1028f2b0da94f0a98ca75dc4c08b699"; // Insert client ID here.
-const redirectUri = "http://localhost:3000/"; // Have to add this to your accepted Spotify redirect URIs on the Spotify API.
+const redirectUri = "https://lmurr248.github.io/jammming/"; // Have to add this to your accepted Spotify redirect URIs on the Spotify API.
 let accessToken;
 
 const Spotify = {
@@ -24,11 +24,14 @@ const Spotify = {
 
   async search(term) {
     const accessToken = Spotify.getAccessToken();
-    return await fetch(`https://api.spotify.com/v1/search?type=track&q=${term}`, {
-      headers: {
-        Authorization: `Bearer ${accessToken}`,
-      },
-    })
+    return await fetch(
+      `https://api.spotify.com/v1/search?type=track&q=${term}`,
+      {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      }
+    )
       .then((response) => {
         return response.json();
       })
