@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/lmurr248/jammming/static/css/main.bb49cecc.css",
+    "main.js": "/lmurr248/jammming/static/js/main.da56432e.js",
+    "index.html": "/lmurr248/jammming/index.html",
+    "main.bb49cecc.css.map": "/lmurr248/jammming/static/css/main.bb49cecc.css.map",
+    "main.da56432e.js.map": "/lmurr248/jammming/static/js/main.da56432e.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.bb49cecc.css",
+    "static/js/main.da56432e.js"
+  ]
+}
