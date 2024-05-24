@@ -1,6 +1,7 @@
-#Jammming
-Jamming is an app that allows you to create Spotify playlists and add them to your account.
-In order to function correct, **you must add your Spotify API key in ./src/util/apikey.js**
+# Jammming
+
+Jamming is an app that allows you to create Spotify playlists and add them to your account.  
+In order to function correct, **you must add your Spotify API key in ./src/util/apikey.js**  
 To get a Spotify API key visit: https://developer.spotify.com/documentation/web-api
 
 ## Getting Started with Create React App
