@@ -2,7 +2,7 @@ import "./App.css";
 import SearchBar from "../Searchbar/Searchbar";
 import SearchResults from "../SearchResults/SearchResults";
 import Playlist from "../Playlist/Playlist";
-import React, { useState, useCallback } from "react";
+import React, { useState, useCallback, useEffect } from "react";
 import Spotify from "../util/Spotify";
 
 function App() {
@@ -13,10 +13,33 @@ function App() {
   const [isFooterVisible, setIsFooterVisible] = useState(true);
   const [successMessage, setSuccessMessage] = useState("");
 
+  useEffect(() => {
+    const storedResults = loadSearchResultsFromStorage();
+    if (storedResults) {
+      setSearchResults(storedResults);
+    }
+  }, []);
+
+  const loadSearchResultsFromStorage = () => {
+    const storedResults = localStorage.getItem("searchResults");
+    return storedResults ? JSON.parse(storedResults) : null;
+  };
+
+  const saveSearchResultsToStorage = (results) => {
+    localStorage.setItem("searchResults", JSON.stringify(results));
+  };
+
+  const handleNewSearchResults = (results) => {
+    saveSearchResultsToStorage(results);
+    setSearchResults(results);
+  };
+
   // Spotify results
   const search = useCallback((term) => {
     setSearchTerm(term);
-    Spotify.search(term).then(setSearchResults);
+    Spotify.search(term).then((tracks) => {
+      handleNewSearchResults(tracks);
+    });
   }, []);
 
   // Add track to playlist
@@ -87,27 +110,29 @@ function App() {
       <div className="search">
         <SearchBar onSearch={search} />
       </div>
-      <div className="main-container">
-        <div className="card results">
-          <SearchResults
-            tracks={searchResults}
-            playlistTracks={playlistTracks}
-            onAddToPlaylist={addToPlaylist}
-            onRemoveFromPlaylist={removeFromPlaylist}
-            searchTerm={searchTerm}
-          />
-        </div>
-        <div className="card playlist">
-          <Playlist
-            tracks={playlistTracks}
-            onAddToPlaylist={addToPlaylist}
-            onRemoveFromPlaylist={removeFromPlaylist}
-            onNameChange={updatePlaylistName}
-            value={playlistName}
-            onSave={savePlaylist}
-            playlistName={playlistName}
-            successMessage={successMessage}
-          />
+      <div className="wrapper">
+        <div className="main-container">
+          <div className="card results">
+            <SearchResults
+              tracks={searchResults}
+              playlistTracks={playlistTracks}
+              onAddToPlaylist={addToPlaylist}
+              onRemoveFromPlaylist={removeFromPlaylist}
+              searchTerm={searchTerm}
+            />
+          </div>
+          <div className="card playlist">
+            <Playlist
+              tracks={playlistTracks}
+              onAddToPlaylist={addToPlaylist}
+              onRemoveFromPlaylist={removeFromPlaylist}
+              onNameChange={updatePlaylistName}
+              value={playlistName}
+              onSave={savePlaylist}
+              playlistName={playlistName}
+              successMessage={successMessage}
+            />
+          </div>
         </div>
       </div>
 

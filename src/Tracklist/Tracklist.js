@@ -1,9 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 import Track from "../Track/Track";
-import "./Tracklist.css";
 
-// This component is a list of Tracks
 export default function Tracklist(props) {
+  const [currentPlayingTrack, setCurrentPlayingTrack] = useState(null);
+
+  const handleTrackPreviewPlay = (trackUri) => {
+    setCurrentPlayingTrack(trackUri);
+  };
+
   return (
     <div className="tracklist">
       {props.tracks.map((track, index) => (
@@ -15,6 +19,8 @@ export default function Tracklist(props) {
           onAddToPlaylist={props.onAddToPlaylist}
           onRemoveFromPlaylist={props.onRemoveFromPlaylist}
           isInPlaylist={props.playlistTracks.some((t) => t.id === track.id)}
+          currentPlayingTrack={currentPlayingTrack}
+          onTrackPreviewPlay={handleTrackPreviewPlay}
         />
       ))}
     </div>

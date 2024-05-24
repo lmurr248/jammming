@@ -1,5 +1,7 @@
-const clientId = "f1028f2b0da94f0a98ca75dc4c08b699";
-const redirectUri = "http://localhost:3000/";
+import { apiKey } from "./apikey.js";
+
+const clientId = apiKey;
+const redirectUri = "http://localhost:3001/";
 let accessToken;
 
 const Spotify = {
@@ -24,6 +26,7 @@ const Spotify = {
 
   async search(term) {
     const accessToken = Spotify.getAccessToken();
+
     return await fetch(
       `https://api.spotify.com/v1/search?type=track&q=${term}`,
       {
@@ -39,12 +42,14 @@ const Spotify = {
         if (!jsonResponse.tracks) {
           return [];
         }
+
         return jsonResponse.tracks.items.map((track) => ({
           id: track.id,
           name: track.name,
           artist: track.artists[0].name,
           album: track.album.name,
           uri: track.uri,
+          preview: track.preview_url,
         }));
       });
   },
