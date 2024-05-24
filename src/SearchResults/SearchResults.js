@@ -9,6 +9,7 @@ export default function SearchResults(props) {
         {props.tracks.length > 0
           ? `Showing results for "${props.searchTerm}"`
           : "No results to show"}
+          
       </h4>
       <Tracklist
         tracks={props.tracks}
